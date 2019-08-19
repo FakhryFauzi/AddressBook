@@ -6,4 +6,8 @@ package addressbook;
  */
 public class AddressBook {
     
+    
+    public AddressBook(){
+        
+    }
 }

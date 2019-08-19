@@ -21,7 +21,7 @@
         <!-- Custom fonts for this template-->
         <link rel="stylesheet" type="text/css" href="<c:url value="/resources/vendor/fontawesome-free/css/all.min.css"/>">
         <link rel="stylesheet" type="text/css" href="<c:url value="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"/>">
-        
+
         <!-- Custom styles for this template-->
         <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/sb-admin-2.min.css"/>">
 
@@ -56,14 +56,14 @@
 
                 <!-- Nav Item-->
                 <li class="nav-item">
-                    <a class="nav-link">
-                        <i class="fas fa fa-address-card"></i>
+                    <a class="nav-link" data-toggle="modal" data-target="#newAddress" >
+                        <i class="fas fa fa-users"></i>
                         <span>Add Friends</span></a>
                 </li>
 
                 <!-- Nav Item -->
                 <li class="nav-item">
-                    <a class="nav-link">
+                    <a class="nav-link" data-toggle="modal" data-target="#newReminder">
                         <i class="fas fa-clipboard-list"></i>
                         <span>Add To-do list</span></a>
                 </li>
@@ -167,7 +167,7 @@
                                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">No. Of Friends</div>
                                                 <div class="row no-gutters align-items-center">
                                                     <div class="col-auto">
-                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800"><span id="numberOfFriends">0</span></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -186,7 +186,7 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">To-do </div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><span id="numberOfReminder">0</span></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -201,7 +201,6 @@
 
                         <div class="row">
 
-                            <!-- Area Chart -->
                             <div class="col-xl-8 col-lg-7">
                                 <div class="card shadow mb-4">
                                     <!-- Card Header - Dropdown -->
@@ -212,17 +211,21 @@
                                                 <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                                <div class="dropdown-header">Dropdown Header:</div>
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#">Something else here</a>
+                                                <div class="dropdown-header">Action:</div>
+                                                <a class="dropdown-item" href="#">Download</a>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- Card Body -->
                                     <div class="card-body">
-                                        <!--Add address table hear-->
+                                        <div id = "address-display"">
+                                            <table class ="table table-condensed table-bordered">
+                                                <thead id ="address-display-header" class="font-weight-bolder"></thead>
+                                                <!--Testing-->
+                                                <tbody id ="address-display-body">
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -238,17 +241,23 @@
                                                 <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                                <div class="dropdown-header">Dropdown Header:</div>
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#">Something else here</a>
+                                                <div class="dropdown-header">Action:</div>
+                                                <a class="dropdown-item" href="#">Download</a>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- Card Body -->
                                     <div class="card-body">
-                                        <!--place reminder content here-->
+                                        <div class="card-body">
+                                        <div id = "reminder-display"">
+                                            <table class ="table table-condensed table-bordered">
+                                                <thead id ="reminder-display-header" class="font-weight-bolder"></thead>
+                                                <!--Testing-->
+                                                <tbody id ="reminder-display-body">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -281,25 +290,86 @@
             <i class="fas fa-angle-up"></i>
         </a>
 
-        <!-- Logout Modal-->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+        <!--Add Address dialog-->
+        <div class="modal fade" id="newAddress" role="dialog">
+            <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Add New Friends to Address Book</h6>
                     </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
+                    <div class="card-body">
+                        <!--Form is placed here-->
+                        <form id="addressForm">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <span class="form-label">Full Name</span>
+                                        <input class="form-control" type="text" id="friendName" value="" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <span class="form-label">Phone Number</span>
+                                        <input class="form-control" type="text" id="friendNumber" value="" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <span class="form-label">Email</span>
+                                        <input class="form-control" type="email" id="friendEmail" value="" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <span class="form-label">Address</span>
+                                        <textarea class="form-control" type="text" id="friendAddress" value="" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <a onclick="addFriend()" class="btn btn-primary text-white">
+                            <span class="text">Add Friend</span>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!--Add to-do-list dialog-->
+        <div class="modal fade" id="newReminder" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Add To-do List</h6>
+                    </div>
+                    <div class="card-body">
+                        <!--Form is placed here-->
+                        <form id="reminderForm">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <span class="form-label">Note</span>
+                                        <textarea class="form-control" type="text" id="reminderNote" value="" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <a onclick="addReminder()" class="btn btn-primary btn-icon-split btn-sm text-white">
+                            <span class="text">Add to-do list</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <!-- Bootstrap core JavaScript-->
         <script type ="text/javascript" src="<c:url value="/resources/vendor/jquery/jquery.min.js"/>"></script>
         <script type ="text/javascript" src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"/>"></script>
@@ -309,13 +379,6 @@
 
         <!-- Custom scripts for all pages-->
         <script type ="text/javascript" src="<c:url value="/resources/javascript/sb-admin-2.min.js"/>"></script>
-
-        <!-- Page level plugins -->
-        <script type ="text/javascript" src="<c:url value="/resources/vendor/chart.js/Chart.min.js"/>"></script>
-
-        <!-- Page level custom scripts -->
-        <script type ="text/javascript" src="<c:url value="/resources/javascript/demo/chart-area-demo.js"/>"></script>
-        <script type ="text/javascript" src="<c:url value="/resources/javascript/demo/chart-pie-demo.js"/>"></script>
 
     </body>
 
